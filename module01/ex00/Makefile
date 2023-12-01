@@ -1,4 +1,4 @@
-NAME := phonebook
+NAME := zombie
 SRC := $(wildcard *.cpp)
 OBJ := $(SRC:.cpp=.o)
 
