@@ -10,18 +10,13 @@ private:
 public:
 	Zombie();
 
-	Zombie(const std::string &);
-
-	Zombie(const Zombie &);
+	explicit Zombie(const std::string &name);
 
 	~Zombie();
-
-	Zombie &operator=(const Zombie &);
 
 	void announce();
 };
 
 Zombie *zombieHorde(int, std::string);
-
 
 #endif //CPP_MODULES_ZOMBIE_H

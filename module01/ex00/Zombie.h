@@ -8,15 +8,9 @@ private:
 	std::string name;
 
 public:
-	Zombie();
-
-	Zombie(const std::string &name);
-
-	Zombie(const Zombie &z);
+	explicit Zombie(const std::string &name);
 
 	~Zombie();
-
-	Zombie &operator=(const Zombie &z);
 
 	void announce();
 };
