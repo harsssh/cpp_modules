@@ -1,4 +1,4 @@
-NAME := phonebook
+NAME := violence
 SRC := $(wildcard *.cpp)
 OBJ := $(SRC:.cpp=.o)
 

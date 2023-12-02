@@ -1,9 +1,9 @@
-NAME := phonebook
+NAME := brain
 SRC := $(wildcard *.cpp)
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -pedantic
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 .PHONY: all
 all: $(NAME)
