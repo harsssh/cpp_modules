@@ -1,7 +1,7 @@
 #include "Fixed.h"
 #include <iostream>
 
-Fixed::Fixed(): raw(0) {
+Fixed::Fixed() : raw(0) {
 	std::cerr << "Default constructor called" << std::endl;
 }
 
@@ -13,7 +13,7 @@ Fixed::Fixed(const int n) {
 
 Fixed::Fixed(const float f) {
 	std::cerr << "Float constructor called" << std::endl;
-	this->raw = (int)roundf(f * (1 << Fixed::fractionalBits));
+	this->raw = (int) roundf(f * (1 << Fixed::fractionalBits));
 }
 
 Fixed::Fixed(const Fixed &fixed) : raw(0) {
@@ -43,7 +43,7 @@ void Fixed::setRawBits(const int r) {
 }
 
 float Fixed::toFloat() const {
-	return (float)this->raw / (1 << Fixed::fractionalBits);
+	return (float) this->raw / (1 << Fixed::fractionalBits);
 }
 
 int Fixed::toInt() const {

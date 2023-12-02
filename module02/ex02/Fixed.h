@@ -31,22 +31,33 @@ public:
 
 	// comparison operators
 	bool operator==(const Fixed &rhs) const;
+
 	bool operator!=(const Fixed &rhs) const;
+
 	bool operator<(const Fixed &rhs) const;
+
 	bool operator<=(const Fixed &rhs) const;
+
 	bool operator>(const Fixed &rhs) const;
+
 	bool operator>=(const Fixed &rhs) const;
 
 	// arithmetic operators
 	Fixed operator+(const Fixed &rhs) const;
+
 	Fixed operator-(const Fixed &rhs) const;
+
 	Fixed operator*(const Fixed &rhs) const;
+
 	Fixed operator/(const Fixed &rhs) const;
 
 	// increment and decrement operators
 	Fixed &operator++();
+
 	Fixed operator++(int);
+
 	Fixed &operator--();
+
 	Fixed operator--(int);
 
 	static Fixed &min(Fixed &a, Fixed &b);

@@ -1,7 +1,7 @@
 #include "Fixed.h"
 #include <iostream>
 
-Fixed::Fixed(): raw(0) {
+Fixed::Fixed() : raw(0) {
 	std::cerr << "Default constructor called" << std::endl;
 }
 
