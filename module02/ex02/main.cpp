@@ -3,22 +3,47 @@
 
 int main() {
 	Fixed a;
-	Fixed const b(10);
-	Fixed const c(42.42f);
-	Fixed const d(b);
-	Fixed const e(-1.23f);
+	Fixed const b(Fixed(5.05f) * Fixed(2));
+	Fixed c;
 
-	a = Fixed(1234.4321f);
+	std::cout << "[increment/decrement]" << std::endl;
+	std::cout << "a\t" << a << std::endl;
+	std::cout << "++a\t" << ++a << std::endl;
+	std::cout << "a\t" << a << std::endl;
+	std::cout << "a++\t" << a++ << std::endl;
+	std::cout << "a\t" << a << std::endl;
 
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
-	std::cout << "e is " << e << std::endl;
+	std::cout << "c\t" << c << std::endl;
+	std::cout << "--c\t" << --c << std::endl;
+	std::cout << "c\t" << c << std::endl;
+	std::cout << "c--\t" << c-- << std::endl;
+	std::cout << "c\t" << c << std::endl;
 
-	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-	std::cout << "e is " << e.toInt() << " as integer" << std::endl;
+	std::cout << "[min/max]" << std::endl;
+	std::cout << "a=" << a << ", b=" << b << std::endl;
+	std::cout << "max(a, b)\t" << Fixed::max(a, b) << std::endl;
+	std::cout << "min(a, b)\t" << Fixed::min(a, b) << std::endl;
+
+	std::cout << "[arithmetics]" << std::endl;
+	std::cout << "Fixed(2) + Fixed(3)\t" << Fixed(2) + Fixed(3) << std::endl;
+	std::cout << "Fixed(2) - Fixed(3)\t" << Fixed(2) - Fixed(3) << std::endl;
+	std::cout << "Fixed(2) * Fixed(3)\t" << Fixed(2) * Fixed(3) << std::endl;
+	std::cout << "Fixed(3) / Fixed(2)\t" << Fixed(3) / Fixed(2) << std::endl;
+
+	std::cout << "[comparison]" << std::endl;
+	std::cout << "Fixed(2) < Fixed(3)\t" << (Fixed(2) < Fixed(3)) << std::endl;
+	std::cout << "Fixed(3) > Fixed(2)\t" << (Fixed(3) > Fixed(2)) << std::endl;
+	std::cout << "Fixed(2) <= Fixed(3)\t" << (Fixed(2) <= Fixed(3)) << std::endl;
+	std::cout << "Fixed(2) <= Fixed(2)\t" << (Fixed(2) <= Fixed(2)) << std::endl;
+	std::cout << "Fixed(3) >= Fixed(2)\t" << (Fixed(3) >= Fixed(2)) << std::endl;
+	std::cout << "Fixed(2) >= Fixed(2)\t" << (Fixed(2) >= Fixed(2)) << std::endl;
+	std::cout << "Fixed(2) == Fixed(2)\t" << (Fixed(2) == Fixed(2)) << std::endl;
+	std::cout << "Fixed(2) != Fixed(3)\t" << (Fixed(2) != Fixed(3)) << std::endl;
+
+	std::cout << "Fixed(3) < Fixed(2)\t" << (Fixed(3) < Fixed(2)) << std::endl;
+	std::cout << "Fixed(2) > Fixed(3)\t" << (Fixed(2) > Fixed(3)) << std::endl;
+	std::cout << "Fixed(3) <= Fixed(2)\t" << (Fixed(3) <= Fixed(2)) << std::endl;
+	std::cout << "Fixed(2) >= Fixed(3)\t" << (Fixed(2) >= Fixed(3)) << std::endl;
+	std::cout << "Fixed(2) == Fixed(3)\t" << (Fixed(2) == Fixed(3)) << std::endl;
+	std::cout << "Fixed(2) != Fixed(2)\t" << (Fixed(2) != Fixed(2)) << std::endl;
 }

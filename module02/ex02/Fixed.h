@@ -28,6 +28,34 @@ public:
 	float toFloat() const;
 
 	int toInt() const;
+
+	// comparison operators
+	bool operator==(const Fixed &rhs) const;
+	bool operator!=(const Fixed &rhs) const;
+	bool operator<(const Fixed &rhs) const;
+	bool operator<=(const Fixed &rhs) const;
+	bool operator>(const Fixed &rhs) const;
+	bool operator>=(const Fixed &rhs) const;
+
+	// arithmetic operators
+	Fixed operator+(const Fixed &rhs) const;
+	Fixed operator-(const Fixed &rhs) const;
+	Fixed operator*(const Fixed &rhs) const;
+	Fixed operator/(const Fixed &rhs) const;
+
+	// increment and decrement operators
+	Fixed &operator++();
+	Fixed operator++(int);
+	Fixed &operator--();
+	Fixed operator--(int);
+
+	static Fixed &min(Fixed &a, Fixed &b);
+
+	static const Fixed &min(const Fixed &a, const Fixed &b);
+
+	static Fixed &max(Fixed &a, Fixed &b);
+
+	static const Fixed &max(const Fixed &a, const Fixed &b);
 };
 
 std::ostream &operator<<(std::ostream &os, const Fixed &fixed);
