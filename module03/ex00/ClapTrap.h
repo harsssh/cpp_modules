@@ -17,6 +17,7 @@ private:
 
 	unsigned int getRepairAmount(unsigned int amount) const;
 
+protected:
 	void displayStatus() const;
 	void displayAlreadyDead() const;
 	void displayDead() const;

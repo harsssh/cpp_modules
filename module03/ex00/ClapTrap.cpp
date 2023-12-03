@@ -5,24 +5,24 @@
 const unsigned int ClapTrap::MAX_HIT_POINTS = std::numeric_limits<unsigned int>::max();
 
 ClapTrap::ClapTrap() : name_("default"), hitPoints_(10), energyPoints_(10), attackDamage_(0) {
-	std::cerr << "Default constructor called" << std::endl;
+	std::cerr << "ClapTrap default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string &name) : name_(name), hitPoints_(10), energyPoints_(10), attackDamage_(0) {
-	std::cerr << "Name constructor called" << std::endl;
+	std::cerr << "ClapTrap constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &clapTrap) {
-	std::cerr << "Copy constructor called" << std::endl;
+	std::cerr << "ClapTrap copy constructor called" << std::endl;
 	*this = clapTrap;
 }
 
 ClapTrap::~ClapTrap() {
-	std::cerr << "Destructor called" << std::endl;
+	std::cerr << "ClapTrap destructor called" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &clapTrap) {
-	std::cerr << "Copy assignment operator called" << std::endl;
+	std::cerr << "CrapTrap copy assignment operator called" << std::endl;
 	if (this != &clapTrap) {
 		this->name_ = clapTrap.name_;
 		this->hitPoints_ = clapTrap.hitPoints_;
