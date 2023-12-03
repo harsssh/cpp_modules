@@ -10,16 +10,16 @@ void testNormal() {
 	const Animal *j = new Dog();
 	const Animal *i = new Cat();
 
-	std::cout << "Dog.getType()\t" << j->getType() << std::endl;
-	std::cout << "Cat.getType()\t" << i->getType() << std::endl;
+	std::cout << "Dog.getType(): " << j->getType() << std::endl;
+	std::cout << "Cat.getType(): " << i->getType() << std::endl;
 
-	std::cout << "Dog.makeSound()\t";
+	std::cout << "Dog.makeSound(): ";
 	j->makeSound();
 
-	std::cout << "Cat.makeSound()\t";
+	std::cout << "Cat.makeSound(): ";
 	i->makeSound();
 
-	std::cout << "Animal.makeSound()\t";
+	std::cout << "Animal.makeSound(): ";
 	meta->makeSound();
 
 	delete meta;
@@ -31,12 +31,12 @@ void testWrong() {
 	const WrongAnimal *meta = new WrongAnimal();
 	const WrongAnimal *i = new WrongCat();
 
-	std::cout << "WrongCat.getType()\t" << i->getType() << std::endl;
+	std::cout << "WrongCat.getType(): " << i->getType() << std::endl;
 
-	std::cout << "WrongCat.makeSound()\t";
+	std::cout << "WrongCat.makeSound(): ";
 	i->makeSound();	// WrongCat's makeSound() is not called
 
-	std::cout << "WrongAnimal.makeSound()\t";
+	std::cout << "WrongAnimal.makeSound(): ";
 	meta->makeSound();
 
 	delete meta;
