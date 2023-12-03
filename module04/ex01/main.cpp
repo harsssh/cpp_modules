@@ -2,53 +2,46 @@
 #include "Animal.h"
 #include "Cat.h"
 #include "Dog.h"
-#include "WrongAnimal.h"
-#include "WrongCat.h"
 
-void testNormal() {
-	const Animal *meta = new Animal();
-	const Animal *j = new Dog();
-	const Animal *i = new Cat();
+// appropriate destructors must be called in expected order
+void runAnimalArrayTest() {
+	const size_t animalCount = 4;
+	Animal *animals[animalCount];
+	for (size_t i = 0; i < animalCount / 2; i++)
+		animals[i] = new Dog();
+	for (size_t i = animalCount / 2; i < animalCount; i++)
+		animals[i] = new Cat();
 
-	std::cout << "Dog.getType()\t" << j->getType() << std::endl;
-	std::cout << "Cat.getType()\t" << i->getType() << std::endl;
-
-	std::cout << "Dog.makeSound()\t";
-	j->makeSound();
-
-	std::cout << "Cat.makeSound()\t";
-	i->makeSound();
-
-	std::cout << "Animal.makeSound()\t";
-	meta->makeSound();
-
-	delete meta;
-	delete j;
-	delete i;
+	for (size_t i = 0; i < animalCount; i++)
+		delete animals[i];
 }
 
-void testWrong() {
-	const WrongAnimal *meta = new WrongAnimal();
-	const WrongAnimal *i = new WrongCat();
+// Brain must be copied deeply
+void runDeepCopyTest() {
+	Dog a1;
+	a1.setIdea(0, "idea1");
 
-	std::cout << "WrongCat.getType()\t" << i->getType() << std::endl;
+	std::cout << "a1 idea[0]: " << a1.getIdea(0) << std::endl;
+	std::cout << "a1 idea[1]: " << a1.getIdea(1) << std::endl;
 
-	std::cout << "WrongCat.makeSound()\t";
-	i->makeSound();	// WrongCat's makeSound() is not called
+	Dog a2;
+	a2 = a1;
+	a2.setIdea(0, "IDEA1");
+	a2.setIdea(1, "IDEA2");
 
-	std::cout << "WrongAnimal.makeSound()\t";
-	meta->makeSound();
+	std::cout << "copied a1 to a2" << std::endl;
 
-	delete meta;
-	delete i;	// WrongCat's destructor is not called
+	std::cout << "a1 idea[0]: " << a1.getIdea(0) << std::endl;
+	std::cout << "a1 idea[1]: " << a1.getIdea(1) << std::endl;
+	std::cout << "a2 idea[0]: " << a2.getIdea(0) << std::endl;
+	std::cout << "a2 idea[1]: " << a2.getIdea(1) << std::endl;
 }
 
 int main() {
-	std::cout << "[Normal test]" << std::endl;
-	testNormal();
+	std::cout << "[Animal array test]" << std::endl;
+	runAnimalArrayTest();
 
 	std::cout << std::endl;
-
-	std::cout << "[Wrong test]" << std::endl;
-	testWrong();
+	std::cout << "[Deep copy test]" << std::endl;
+	runDeepCopyTest();
 }
