@@ -17,14 +17,15 @@ private:
 
 	unsigned int getRepairAmount(unsigned int amount) const;
 
-	void displayStatus() const;
-	void displayAlreadyDead() const;
-	void displayDead() const;
-	void displayNotEnoughEnergy() const;
-	void displayMaxHitPoints() const;
-	void displayBeRepaired(unsigned int amount) const;
-	void displayTakeDamage(unsigned int amount) const;
-	void displayAttack(std::string const &target) const;
+protected:
+	virtual void displayStatus() const;
+	virtual void displayAlreadyDead() const;
+	virtual void displayDead() const;
+	virtual void displayNotEnoughEnergy() const;
+	virtual void displayMaxHitPoints() const;
+	virtual void displayBeRepaired(unsigned int amount) const;
+	virtual void displayTakeDamage(unsigned int amount) const;
+	virtual void displayAttack(std::string const &target) const;
 
 public:
 	ClapTrap();
