@@ -8,7 +8,7 @@ private:
 	std::string name;
 
 public:
-	explicit Zombie(const std::string &name);
+	Zombie(const std::string &name);
 
 	~Zombie();
 

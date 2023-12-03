@@ -5,7 +5,7 @@
 
 class Harl {
 private:
-	static const int LEVELS = 4;
+	static const int levels = 4;
 
 	void debug();
 
