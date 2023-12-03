@@ -4,7 +4,7 @@
 #include <string>
 
 class ClapTrap {
-private:
+protected:
 	static const unsigned int ACTION_ENERGY_COST = 1;
 	static const unsigned int MAX_HIT_POINTS;
 	std::string name_;
@@ -17,7 +17,6 @@ private:
 
 	unsigned int getRepairAmount(unsigned int amount) const;
 
-protected:
 	virtual void displayStatus() const;
 	virtual void displayAlreadyDead() const;
 	virtual void displayDead() const;

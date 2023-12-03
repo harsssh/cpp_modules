@@ -1,9 +1,9 @@
 #include <iostream>
 #include <climits>
-#include "ClapTrap.h"
+#include "ScavTrap.h"
 
 int main() {
-	ClapTrap player("player");
+	ScavTrap player("player");
 
 	std::cout << "[simple attack]" << std::endl;
 	player.attack("enemy");
@@ -27,19 +27,29 @@ int main() {
 
 	std::cout << std::endl;
 
-	std::cout << "[attack without energy]" << std::endl;
-	int remainingEnergy = 6;
-	while (remainingEnergy--) {
-		player.attack("enemy");
-	}
-	player.attack("enemy");
+	std::cout << "[guard gate]" << std::endl;
+	player.guardGate();
 
 	std::cout << std::endl;
 
-	std::cout << "[repair without energy]" << std::endl;
-	player.beRepaired(1);
-
-	std::cout << std::endl;
+//	std::cout << "[attack without energy]" << std::endl;
+//	int remainingEnergy = 45;
+//	while (remainingEnergy--) {
+//		player.attack("enemy");
+//	}
+//	player.attack("enemy");
+//
+//	std::cout << std::endl;
+//
+//	std::cout << "[repair without energy]" << std::endl;
+//	player.beRepaired(1);
+//
+//	std::cout << std::endl;
+//
+//	std::cout << "[guard gate without energy]" << std::endl;
+//	player.guardGate();
+//
+//	std::cout << std::endl;
 
 	std::cout << "[take damage and death]" << std::endl;
 	player.takeDamage(UINT_MAX);
@@ -58,4 +68,9 @@ int main() {
 
 	std::cout << "[repair after death]" << std::endl;
 	player.beRepaired(1);
+
+	std::cout << std::endl;
+
+	std::cout << "[guard gate after death]" << std::endl;
+	player.guardGate();
 }
