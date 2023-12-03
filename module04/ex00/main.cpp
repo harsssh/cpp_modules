@@ -34,13 +34,13 @@ void testWrong() {
 	std::cout << "WrongCat.getType(): " << i->getType() << std::endl;
 
 	std::cout << "WrongCat.makeSound(): ";
-	i->makeSound();	// WrongCat's makeSound() is not called
+	i->makeSound();    // WrongCat's makeSound() is not called
 
 	std::cout << "WrongAnimal.makeSound(): ";
 	meta->makeSound();
 
 	delete meta;
-	delete i;	// WrongCat's destructor is not called
+	delete i;    // WrongCat's destructor is not called
 }
 
 int main() {
