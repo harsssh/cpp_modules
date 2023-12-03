@@ -1,7 +1,7 @@
 #include "FragTrap.h"
 #include <iostream>
 
-FragTrap::FragTrap(): ClapTrap() {
+FragTrap::FragTrap() : ClapTrap() {
 	std::cerr << "FragTrap default constructor called" << std::endl;
 	this->hitPoints_ = 100;
 	this->energyPoints_ = 100;

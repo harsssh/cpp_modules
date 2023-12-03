@@ -23,7 +23,7 @@ int main() {
 	std::cout << "[repair UINT_MAX / 2 three times]" << std::endl;
 	player.beRepaired(UINT_MAX / 2);
 	player.beRepaired(UINT_MAX / 2);
-	player.beRepaired(UINT_MAX / 2);	// cannot be repaired
+	player.beRepaired(UINT_MAX / 2);    // cannot be repaired
 
 	std::cout << std::endl;
 

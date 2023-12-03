@@ -13,24 +13,32 @@ private:
 	unsigned int attackDamage_;
 
 	bool isAlive() const;
+
 	bool hasEnoughEnergy() const;
 
 	unsigned int getRepairAmount(unsigned int amount) const;
 
 protected:
 	virtual void displayStatus() const;
+
 	virtual void displayAlreadyDead() const;
+
 	virtual void displayDead() const;
+
 	virtual void displayNotEnoughEnergy() const;
+
 	virtual void displayMaxHitPoints() const;
+
 	virtual void displayBeRepaired(unsigned int amount) const;
+
 	virtual void displayTakeDamage(unsigned int amount) const;
+
 	virtual void displayAttack(std::string const &target) const;
 
 public:
 	ClapTrap();
 
-	ClapTrap(const std::string& name);
+	ClapTrap(const std::string &name);
 
 	ClapTrap(const ClapTrap &clapTrap);
 
