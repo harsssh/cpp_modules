@@ -5,12 +5,6 @@
 
 PhoneBook::PhoneBook() : contact_count(0), overwrite_index(0) {}
 
-PhoneBook::PhoneBook(const PhoneBook &b) : contact_count(0), overwrite_index(0) {
-	*this = b;
-}
-
-PhoneBook::~PhoneBook() {}
-
 PhoneBook &PhoneBook::operator=(const PhoneBook &b) {
 	if (this == &b)
 		return (*this);
@@ -23,11 +17,11 @@ PhoneBook &PhoneBook::operator=(const PhoneBook &b) {
 }
 
 void PhoneBook::add_contact(const Contact &contact) {
-	if (this->overwrite_index >= PhoneBook::MAX_CONTACTS)
+	if (this->overwrite_index >= PhoneBook::maxContacts)
 		this->overwrite_index = 0;
 	this->contacts[this->overwrite_index] = contact;
 	++this->overwrite_index;
-	if (this->contact_count < PhoneBook::MAX_CONTACTS)
+	if (this->contact_count < PhoneBook::maxContacts)
 		++this->contact_count;
 }
 
@@ -39,14 +33,14 @@ void PhoneBook::print_header() {
 			"nickname"
 	};
 	for (int i = 0; i < 4; i++) {
-		std::cout << std::setw(PhoneBook::MAX_FIELD_WIDTH) << PhoneBook::truncate_string(columns[i]);
+		std::cout << std::setw(PhoneBook::maxFieldWidth) << PhoneBook::truncate_string(columns[i]);
 		if (i < 3)
-			std::cout << PhoneBook::TABLE_DELIMITER;
+			std::cout << PhoneBook::tableDelimiter;
 	}
 }
 
 void PhoneBook::print_phonebook_row(int row) {
-	if (row < 0 || row >= PhoneBook::MAX_CONTACTS || row >= this->contact_count)
+	if (row < 0 || row >= PhoneBook::maxContacts || row >= this->contact_count)
 		return;
 	Contact contact = this->contacts[row];
 	const std::string fields[] = {
@@ -56,9 +50,9 @@ void PhoneBook::print_phonebook_row(int row) {
 			contact.get_nickname()
 	};
 	for (int i = 0; i < 4; i++) {
-		std::cout << std::setw(PhoneBook::MAX_FIELD_WIDTH) << PhoneBook::truncate_string(fields[i]);
+		std::cout << std::setw(PhoneBook::maxFieldWidth) << PhoneBook::truncate_string(fields[i]);
 		if (i < 3)
-			std::cout << PhoneBook::TABLE_DELIMITER;
+			std::cout << PhoneBook::tableDelimiter;
 	}
 }
 
@@ -72,17 +66,17 @@ void PhoneBook::print_phonebook() {
 }
 
 std::string PhoneBook::truncate_string(const std::string &str) {
-	if (str.length() <= PhoneBook::MAX_FIELD_WIDTH) {
+	if (str.length() <= PhoneBook::maxFieldWidth) {
 		return str;
 	}
 
-	std::string truncated = str.substr(0, PhoneBook::MAX_FIELD_WIDTH - 1);
+	std::string truncated = str.substr(0, PhoneBook::maxFieldWidth - 1);
 	truncated.append(".");
 	return truncated;
 }
 
 void PhoneBook::print_contact(int i) {
-	if (i < 0 || i >= PhoneBook::MAX_CONTACTS || i >= this->contact_count) {
+	if (i < 0 || i >= PhoneBook::maxContacts || i >= this->contact_count) {
 		std::cout << "Invalid index" << std::endl;
 		return;
 	}

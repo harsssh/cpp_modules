@@ -17,10 +17,6 @@ public:
 	Contact(const std::string &first_name, const std::string &last_name, const std::string &nickname,
 			const std::string &phone_number, const std::string &darkest_secret);
 
-	Contact(const Contact &c);
-
-	~Contact();
-
 	Contact &operator=(const Contact &c);
 
 	std::string get_first_name();

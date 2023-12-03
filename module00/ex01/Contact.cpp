@@ -8,12 +8,6 @@ Contact::Contact(const std::string &first_name, const std::string &last_name, co
 		: first_name(first_name), last_name(last_name), nickname(nickname),
 		  phone_number(phone_number), darkest_secret(darkest_secret) {}
 
-Contact::Contact(const Contact &c) {
-	*this = c;
-}
-
-Contact::~Contact() {}
-
 Contact &Contact::operator=(const Contact &c) {
 	if (this == &c)
 		return (*this);
