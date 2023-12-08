@@ -11,6 +11,10 @@ private:
 	const std::string name_;
 	int grade_;
 
+	static bool isTooHighGrade(int grade);
+
+	static bool isTooLowGrade(int grade);
+
 public:
 	class GradeTooHighException : public std::exception {
 		virtual const char *what() const throw();
@@ -37,10 +41,6 @@ public:
 	const std::string &getName() const;
 
 	int getGrade() const;
-
-	static bool isTooHighGrade(int grade);
-
-	static bool isTooLowGrade(int grade);
 
 	void incrementGrade() throw(GradeTooHighException);
 
