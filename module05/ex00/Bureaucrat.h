@@ -20,6 +20,8 @@ public:
 		virtual const char *what() const throw();
 	};
 
+	Bureaucrat();
+
 	Bureaucrat(const std::string &name);
 
 	Bureaucrat(const std::string &name, int grade) throw(GradeTooHighException, GradeTooLowException);

@@ -1,5 +1,7 @@
 #include "Bureaucrat.h"
 
+Bureaucrat::Bureaucrat(): name_("anonymous"), grade_(Bureaucrat::minGrade_) {}
+
 Bureaucrat::Bureaucrat(const std::string &name) : name_(name), grade_(Bureaucrat::minGrade_) {}
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade) throw(GradeTooHighException, GradeTooLowException)
