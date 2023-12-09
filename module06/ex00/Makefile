@@ -1,9 +1,10 @@
-NAME := main
+NAME := convert
 SRC := $(wildcard *.cpp)
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98
+# some C++11 features are available in this exercise
+CXXFLAGS := -Wall -Wextra -Werror
 
 .PHONY: all
 all: $(NAME)
