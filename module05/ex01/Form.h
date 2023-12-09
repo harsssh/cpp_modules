@@ -38,7 +38,7 @@ public:
 
 	bool isSigned() const;
 
-	void beSigned(const Bureaucrat &bureaucrat) throw (GradeTooLowException);
+	void beSigned(const Bureaucrat &bureaucrat) throw(GradeTooLowException);
 
 private:
 	const std::string name_;

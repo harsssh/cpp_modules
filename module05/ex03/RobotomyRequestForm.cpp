@@ -9,7 +9,7 @@ RobotomyRequestForm::RobotomyRequestForm()
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
 		: AForm("RobotomyRequestForm", gradeToSign_, gradeToExecute_), target_(target) {}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other): AForm(other) {}
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other) {}
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 

@@ -26,7 +26,7 @@ public:
 	AForm();
 
 	AForm(const std::string &name, int gradeToSign,
-		 int gradeToExecute) throw(GradeTooHighException, GradeTooLowException);
+		  int gradeToExecute) throw(GradeTooHighException, GradeTooLowException);
 
 
 	AForm(const AForm &other);
@@ -43,7 +43,7 @@ public:
 
 	bool isSigned() const;
 
-	void beSigned(const Bureaucrat &bureaucrat) throw (GradeTooLowException);
+	void beSigned(const Bureaucrat &bureaucrat) throw(GradeTooLowException);
 
 	bool isEnoughGradeToSign(int grade) const;
 

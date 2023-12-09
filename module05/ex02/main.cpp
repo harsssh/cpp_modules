@@ -6,7 +6,7 @@
 
 void testShrubberyCreationForm() {
 	std::cout << "Create Form" << std::endl;
-	ShrubberyCreationForm form("F1");	// target
+	ShrubberyCreationForm form("F1");    // target
 	std::cout << form << std::endl;
 
 	std::cout << "Create Bureaucrat with grade 145" << std::endl;
@@ -33,7 +33,7 @@ void testShrubberyCreationForm() {
 
 void testRobotomyRequestForm() {
 	std::cout << "Create Form" << std::endl;
-	RobotomyRequestForm form("F1");	// target
+	RobotomyRequestForm form("F1");    // target
 	std::cout << form << std::endl;
 
 	std::cout << "Create Bureaucrat with grade 72" << std::endl;
@@ -60,7 +60,7 @@ void testRobotomyRequestForm() {
 
 void testPresidentialPardonForm() {
 	std::cout << "Create Form" << std::endl;
-	PresidentialPardonForm form("F1");	// target
+	PresidentialPardonForm form("F1");    // target
 	std::cout << form << std::endl;
 
 	std::cout << "Create Bureaucrat with grade 25" << std::endl;

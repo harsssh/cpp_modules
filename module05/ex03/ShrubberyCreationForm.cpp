@@ -8,7 +8,7 @@ ShrubberyCreationForm::ShrubberyCreationForm()
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
 		: AForm("ShrubberyCreationForm", gradeToSign_, gradeToExecute_), target_(target) {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other): AForm(other) {}
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other) {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 

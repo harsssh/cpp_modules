@@ -2,10 +2,10 @@
 #include "Bureaucrat.h"
 
 AForm::AForm() : name_("anonymous"), gradeToSign_(Bureaucrat::minGrade_),
-			   gradeToExecute_(Bureaucrat::minGrade_), isSigned_(false) {}
+				 gradeToExecute_(Bureaucrat::minGrade_), isSigned_(false) {}
 
 AForm::AForm(const std::string &name, int gradeToSign,
-		   int gradeToExecute) throw(GradeTooHighException, GradeTooLowException)
+			 int gradeToExecute) throw(GradeTooHighException, GradeTooLowException)
 		: name_(name), gradeToSign_(gradeToSign), gradeToExecute_(gradeToExecute), isSigned_(false) {
 	if (isTooHighGrade(gradeToSign) || isTooHighGrade(gradeToSign))
 		throw GradeTooHighException();
@@ -15,7 +15,7 @@ AForm::AForm(const std::string &name, int gradeToSign,
 
 // other members must be valid
 AForm::AForm(const AForm &other) : name_(other.name_), gradeToSign_(other.gradeToSign_),
-								gradeToExecute_(other.gradeToExecute_), isSigned_(other.isSigned_) {}
+								   gradeToExecute_(other.gradeToExecute_), isSigned_(other.isSigned_) {}
 
 // constant members cannot be assigned
 AForm &AForm::operator=(const AForm &other) {
