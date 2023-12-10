@@ -1,11 +1,11 @@
 #include "Data.h"
 #include <iostream>
 
-Data::Data(): str("default") {}
+Data::Data() : str("default") {}
 
-Data::Data(const std::string &s): str(s) {}
+Data::Data(const std::string &s) : str(s) {}
 
-Data::Data(const Data &other): str(other.str) {}
+Data::Data(const Data &other) : str(other.str) {}
 
 Data &Data::operator=(const Data &other) {
 	if (this != &other)
