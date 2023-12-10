@@ -6,8 +6,7 @@ Span::Span(unsigned int n) : capacity_(n) {
 	vec_.reserve(n);
 }
 
-Span::Span(const Span &other) : capacity_(other.capacity_), vec_(other.vec_),
-								spanMax_(other.spanMax_), spanMin_(other.spanMin_) {}
+Span::Span(const Span &other) : capacity_(other.capacity_), vec_(other.vec_), span_(other.span_) {}
 
 Span::~Span() {}
 
@@ -15,8 +14,7 @@ Span &Span::operator=(const Span &other) {
 	if (this != &other) {
 		capacity_ = other.capacity_;
 		vec_ = other.vec_;
-		spanMax_ = other.spanMax_;
-		spanMin_ = other.spanMin_;
+		span_ = other.span_;
 	}
 	return *this;
 }
@@ -27,22 +25,21 @@ void Span::addNumber(int num) throw(std::runtime_error) {
 	if (!vec_.empty()) {
 		long diff = static_cast<long>(num) - static_cast<long>(vec_.back());
 		unsigned int absDiff = static_cast<unsigned int>(diff < 0 ? -diff : diff);
-		spanMax_.push(absDiff);
-		spanMin_.push(absDiff);
+		span_.insert(absDiff);
 	}
 	vec_.push_back(num);
 }
 
 unsigned int Span::shortestSpan() const throw(std::runtime_error) {
-	if (spanMin_.empty())
+	if (span_.empty())
 		throw std::runtime_error("No span to calculate");
-	return spanMin_.top();
+	return *span_.begin();
 }
 
 unsigned int Span::longestSpan() const throw(std::runtime_error) {
-	if (spanMax_.empty())
+	if (span_.empty())
 		throw std::runtime_error("No span to calculate");
-	return spanMax_.top();
+	return *span_.rbegin();
 }
 
 std::vector<int>::size_type Span::size() const {

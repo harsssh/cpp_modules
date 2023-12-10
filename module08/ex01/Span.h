@@ -2,7 +2,7 @@
 #define CPP_MODULES_SPAN_H
 
 #include <vector>
-#include <queue>
+#include <set>
 #include <stdexcept>
 
 class Span {
@@ -36,8 +36,7 @@ public:
 private:
 	unsigned int capacity_;
 	std::vector<int> vec_;
-	std::priority_queue<unsigned int> spanMax_;
-	std::priority_queue<unsigned int, std::vector<unsigned int>, std::greater<unsigned int> > spanMin_;
+	std::multiset<unsigned int> span_;
 };
 
 #endif //CPP_MODULES_SPAN_H
