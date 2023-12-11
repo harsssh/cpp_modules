@@ -1,4 +1,4 @@
-NAME := main
+NAME := PmergeMe
 SRC := $(wildcard *.cpp)
 OBJ := $(SRC:.cpp=.o)
 

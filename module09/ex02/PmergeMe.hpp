@@ -1,0 +1,9 @@
+#ifndef CPP_MODULES_PMERGEME_HPP
+#define CPP_MODULES_PMERGEME_HPP
+
+
+class PmergeMe {
+
+};
+
+#endif //CPP_MODULES_PMERGEME_HPP
