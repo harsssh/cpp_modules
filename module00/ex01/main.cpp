@@ -19,10 +19,17 @@ static void show_all_commands() {
 			  << std::endl;
 }
 
+static std::string getline_with_prompt(const std::string &prompt) {
+	std::string line;
+	std::cout << prompt;
+	std::getline(std::cin, line);
+	if (std::cin.fail() || std::cin.eof())
+		std::exit(1);
+	return line;
+}
+
 static command_t get_command() {
-	std::string command;
-	std::cout << "[Enter a command]: ";
-	std::getline(std::cin, command);
+	std::string command = getline_with_prompt("Enter a command: ");
 	if (command == "ADD")
 		return CMD_ADD;
 	else if (command == "SEARCH")
@@ -33,6 +40,7 @@ static command_t get_command() {
 		return CMD_UNKNOWN;
 }
 
+
 static void handle_add_command(PhoneBook &phone_book) {
 	std::string first_name;
 	std::string last_name;
@@ -40,16 +48,11 @@ static void handle_add_command(PhoneBook &phone_book) {
 	std::string phone_number;
 	std::string darkest_secret;
 
-	std::cout << "Enter first name: ";
-	std::getline(std::cin, first_name);
-	std::cout << "Enter last name: ";
-	std::getline(std::cin, last_name);
-	std::cout << "Enter nickname: ";
-	std::getline(std::cin, nickname);
-	std::cout << "Enter phone number: ";
-	std::getline(std::cin, phone_number);
-	std::cout << "Enter darkest secret: ";
-	std::getline(std::cin, darkest_secret);
+	first_name = getline_with_prompt("Enter first name: ");
+	last_name = getline_with_prompt("Enter last name: ");
+	nickname = getline_with_prompt("Enter nickname: ");
+	phone_number = getline_with_prompt("Enter phone number: ");
+	darkest_secret = getline_with_prompt("Enter darkest secret: ");
 
 	Contact contact(first_name, last_name, nickname, phone_number, darkest_secret);
 	if (!contact.is_valid()) {
