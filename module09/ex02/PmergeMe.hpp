@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <deque>
+#include <iostream>
 
 class PmergeMe {
 public:
@@ -50,6 +51,10 @@ private:
 
 		~GroupIterator() {}
 
+		Iterator base() const {
+			return it_;
+		}
+
 		GroupIterator &operator=(GroupIterator const &other) {
 			if (this != &other) {
 				it_ = other.it_;
@@ -76,13 +81,6 @@ private:
 			return *this;
 		}
 
-		// decrement
-		// moves the iterator to the previous group
-		GroupIterator &operator--() {
-			std::advance(it_, -groupSize_);
-			return *this;
-		}
-
 		// addition
 		// moves the iterator forward by n groups
 		GroupIterator operator+(difference_type n) const {
@@ -106,11 +104,6 @@ private:
 		}
 
 		// comparison
-		// returns true if both iterators point to the same group
-		bool operator==(GroupIterator const &other) const {
-			return it_ == other.it_;
-		}
-
 		bool operator!=(GroupIterator const &other) const {
 			return it_ != other.it_;
 		}
@@ -122,14 +115,22 @@ private:
 				std::iter_swap(it_ + i, other.it_ + i);
 		}
 
+		static bool compare(const GroupIterator &lhs, const GroupIterator &rhs) {
+			return *lhs < *rhs;
+		}
+
+		difference_type getGroupSize() const {
+			return groupSize_;
+		}
+
 	private:
 		Iterator it_;
 		difference_type groupSize_;
 	};
 
-	template<typename T>
-	static void binaryInsertion(std::vector<T> &v, const T &value) {
-		typename std::vector<T>::iterator it = std::lower_bound(v.begin(), v.end(), value);
+	template<typename T, typename Compare>
+	static void binaryInsertion(std::vector<T> &v, const T &value, Compare comp) {
+		typename std::vector<T>::iterator it = std::lower_bound(v.begin(), v.end(), value, comp);
 		v.insert(it, value);
 	}
 
@@ -137,7 +138,7 @@ private:
 	static void mergeInsertionSort(GroupIterator<Iterator> begin, GroupIterator<Iterator> end) {
 		typename GroupIterator<Iterator>::difference_type size = std::distance(begin, end);
 		if (size < 2)
-			return ;
+			return;
 
 		bool hasUnpairedGroup = (size % 2 == 1);
 
@@ -152,36 +153,42 @@ private:
 		mergeInsertionSort(GroupIterator<Iterator>(begin, 2), GroupIterator<Iterator>(pairEnd, 2));
 
 		// merge pairs of groups
-		std::vector<typename GroupIterator<Iterator>::value_type> sorted;
-		std::vector<typename GroupIterator<Iterator>::value_type> toBeInserted;
+		// TODO: optimize
+		std::vector<GroupIterator<Iterator> > sortedGroups;
+		std::vector<GroupIterator<Iterator> > toBeInserted;
 		for (GroupIterator<Iterator> it = begin; it != pairEnd; it += 2) {
-			toBeInserted.push_back(*it);
-			sorted.push_back(*(it + 1));
+			toBeInserted.push_back(it);
+			sortedGroups.push_back(it + 1);
 		}
 		if (hasUnpairedGroup)
-			toBeInserted.push_back(*pairEnd);
-		// binary insertion sort
-		// insertion order follows Jacobsthal numbers
+			toBeInserted.push_back(pairEnd);
 		std::vector<bool> inserted(toBeInserted.size(), false);
-		binaryInsertion(sorted, toBeInserted[0]);
+		binaryInsertion(sortedGroups, toBeInserted[0], GroupIterator<Iterator>::compare);
 		inserted[0] = true;
 		std::size_t prevIndex = 0;
 		std::size_t currentIndex = 1;
+		// insert in Jacobsthal numbers order
 		while (currentIndex < toBeInserted.size()) {
-			if (!inserted[currentIndex])
-				binaryInsertion(sorted, toBeInserted[currentIndex]);
-			std::size_t tmp = prevIndex;
+			if (!inserted[currentIndex]) {
+				binaryInsertion(sortedGroups, toBeInserted[currentIndex], GroupIterator<Iterator>::compare);
+				inserted[currentIndex] = true;
+			}
+			std::size_t nextIndex = currentIndex + 2 * prevIndex;
 			prevIndex = currentIndex;
-			currentIndex += 2 * tmp;
+			currentIndex = nextIndex;
 		}
 		for (std::size_t i = 0; i < toBeInserted.size(); ++i) {
 			if (!inserted[i])
-				binaryInsertion(sorted, toBeInserted[i]);
+				binaryInsertion(sortedGroups, toBeInserted[i], GroupIterator<Iterator>::compare);
 		}
-
-		// copy sorted values
-		for (std::size_t i = 0; i < sorted.size(); ++i)
-			*(begin + i) = sorted[i];
+		// copy
+		std::vector<typename GroupIterator<Iterator>::value_type> tmp;
+		for (typename std::vector<GroupIterator<Iterator> >::iterator it = sortedGroups.begin();
+			 it != sortedGroups.end(); ++it) {
+			for (typename GroupIterator<Iterator>::difference_type i = 0; i < it->getGroupSize(); ++i)
+				tmp.push_back(*(it->base() + i));
+		}
+		std::copy(tmp.begin(), tmp.end(), begin.base());
 	}
 };
 

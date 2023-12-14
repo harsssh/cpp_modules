@@ -14,9 +14,4 @@ std::ostream &operator<<(std::ostream &os, std::vector<T> const &v) {
 }
 
 int main() {
-	std::vector<int> vec;
-	for (int i = 9; i >= 0; i--)
-		vec.push_back(i);
-	PmergeMe::sort(vec);
-	std::cout << vec << std::endl;
 }
