@@ -10,7 +10,7 @@ protected:
 public:
 	Animal();
 
-	Animal(std::string type);
+	Animal(const std::string& type);
 
 	Animal(const Animal &animal);
 

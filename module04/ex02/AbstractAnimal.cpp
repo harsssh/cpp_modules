@@ -5,7 +5,7 @@ AbstractAnimal::AbstractAnimal() : type_("AbstractAnimal") {
 	std::cerr << "AbstractAnimal default constructor called" << std::endl;
 }
 
-AbstractAnimal::AbstractAnimal(std::string type) : type_(type) {
+AbstractAnimal::AbstractAnimal(const std::string& type) : type_(type) {
 	std::cerr << "AbstractAnimal constructor called" << std::endl;
 }
 

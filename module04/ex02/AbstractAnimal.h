@@ -10,7 +10,7 @@ protected:
 public:
 	AbstractAnimal();
 
-	AbstractAnimal(std::string type);
+	AbstractAnimal(const std::string& type);
 
 	AbstractAnimal(const AbstractAnimal &animal);
 
