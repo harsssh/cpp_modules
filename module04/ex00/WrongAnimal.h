@@ -10,7 +10,7 @@ protected:
 public:
 	WrongAnimal();
 
-	WrongAnimal(const std::string& type);
+	WrongAnimal(const std::string &type);
 
 	WrongAnimal(const WrongAnimal &animal);
 

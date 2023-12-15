@@ -5,7 +5,7 @@ WrongAnimal::WrongAnimal() : type_("WrongAnimal") {
 	std::cerr << "WrongAnimal default constructor called" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(const std::string& type) : type_(type) {
+WrongAnimal::WrongAnimal(const std::string &type) : type_(type) {
 	std::cerr << "WrongAnimal constructor called" << std::endl;
 }
 
