@@ -46,7 +46,7 @@ private:
 	static std::pair<std::string, std::string>
 	splitLinePair(const std::string &line, char delimiter) throw(std::runtime_error);
 
-	static std::string trim(const std::string& str);
+	static std::string trim(const std::string &str);
 };
 
 #endif //CPP_MODULES_BITCOINEXCHANGE_HPP
