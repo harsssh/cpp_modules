@@ -5,8 +5,8 @@
 
 class ClapTrap {
 private:
-	static const unsigned int ACTION_ENERGY_COST = 1;
-	static const unsigned int MAX_HIT_POINTS;
+	static const unsigned int actionEnergyCost = 1;
+	static const unsigned int maxHitPoints;
 	std::string name_;
 	unsigned int hitPoints_;
 	unsigned int energyPoints_;

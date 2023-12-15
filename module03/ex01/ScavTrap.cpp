@@ -50,16 +50,6 @@ void ScavTrap::displayMaxHitPoints() const {
 	std::cout << "ScavTrap " << this->name_ << " has max hit points!" << std::endl;
 }
 
-void ScavTrap::displayBeRepaired(unsigned int amount) const {
-	std::cout << "ScavTrap " << this->name_
-			  << " is repaired for " << amount << " points!" << std::endl;
-}
-
-void ScavTrap::displayTakeDamage(unsigned int amount) const {
-	std::cout << "ScavTrap " << this->name_
-			  << " takes " << amount << " points of damage!" << std::endl;
-}
-
 void ScavTrap::displayAttack(const std::string &target) const {
 	std::cout << "ScavTrap " << this->name_ << " attacks " << target
 			  << ", causing " << this->attackDamage_ << " points of damage!" << std::endl;
@@ -79,7 +69,7 @@ void ScavTrap::guardGate() {
 		return;
 	}
 
-	this->energyPoints_ -= ClapTrap::ACTION_ENERGY_COST;
+	this->energyPoints_ -= ClapTrap::actionEnergyCost;
 	std::cout << "ScavTrap " << this->name_
 			  << " is now in Gate keeper mode" << std::endl;
 	this->displayStatus();

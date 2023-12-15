@@ -2,7 +2,7 @@
 #include <iostream>
 #include <limits>
 
-const unsigned int ClapTrap::MAX_HIT_POINTS = std::numeric_limits<unsigned int>::max();
+const unsigned int ClapTrap::maxHitPoints = std::numeric_limits<unsigned int>::max();
 
 ClapTrap::ClapTrap() : name_("default"), hitPoints_(10), energyPoints_(10), attackDamage_(0) {
 	std::cerr << "ClapTrap default constructor called" << std::endl;
@@ -42,7 +42,7 @@ void ClapTrap::attack(const std::string &target) {
 		return;
 	}
 
-	this->energyPoints_ -= ClapTrap::ACTION_ENERGY_COST;
+	this->energyPoints_ -= ClapTrap::actionEnergyCost;
 
 	this->displayAttack(target);
 	this->displayStatus();
@@ -74,14 +74,14 @@ void ClapTrap::beRepaired(unsigned int amount) {
 		this->displayNotEnoughEnergy();
 		return;
 	}
-	if (this->hitPoints_ == ClapTrap::MAX_HIT_POINTS) {
+	if (this->hitPoints_ == ClapTrap::maxHitPoints) {
 		this->displayMaxHitPoints();
 		return;
 	}
 
 	// be repaired not to exceed MAX_HIT_POINTS
 	unsigned int repairAmount = getRepairAmount(amount);
-	this->energyPoints_ -= ClapTrap::ACTION_ENERGY_COST;
+	this->energyPoints_ -= ClapTrap::actionEnergyCost;
 	this->hitPoints_ += repairAmount;
 
 	this->displayBeRepaired(repairAmount);
@@ -95,13 +95,13 @@ bool ClapTrap::isAlive() const {
 }
 
 bool ClapTrap::hasEnoughEnergy() const {
-	return this->energyPoints_ >= ClapTrap::ACTION_ENERGY_COST;
+	return this->energyPoints_ >= ClapTrap::actionEnergyCost;
 }
 
 unsigned int ClapTrap::getRepairAmount(unsigned int amount) const {
-	if (amount > ClapTrap::MAX_HIT_POINTS ||
-		this->hitPoints_ > ClapTrap::MAX_HIT_POINTS - amount) {
-		return ClapTrap::MAX_HIT_POINTS - this->hitPoints_;
+	if (amount > ClapTrap::maxHitPoints ||
+		this->hitPoints_ > ClapTrap::maxHitPoints - amount) {
+		return ClapTrap::maxHitPoints - this->hitPoints_;
 	} else {
 		return amount;
 	}

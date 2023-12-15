@@ -42,7 +42,7 @@ void FragTrap::highFivesGuys() {
 		return;
 	}
 
-	this->energyPoints_ -= ClapTrap::ACTION_ENERGY_COST;
+	this->energyPoints_ -= ClapTrap::actionEnergyCost;
 	std::cout << "FragTrap " << this->name_ << " high fives guys!" << std::endl;
 	this->displayStatus();
 }

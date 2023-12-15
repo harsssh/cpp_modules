@@ -16,10 +16,6 @@ protected:
 
 	virtual void displayMaxHitPoints() const;
 
-	virtual void displayBeRepaired(unsigned int amount) const;
-
-	virtual void displayTakeDamage(unsigned int amount) const;
-
 	virtual void displayAttack(std::string const &target) const;
 
 public:
