@@ -9,9 +9,8 @@ WrongAnimal::WrongAnimal(const std::string &type) : type_(type) {
 	std::cerr << "WrongAnimal constructor called" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(const WrongAnimal &animal) {
+WrongAnimal::WrongAnimal(const WrongAnimal &animal) : type_(animal.type_) {
 	std::cerr << "WrongAnimal copy constructor called" << std::endl;
-	*this = animal;
 }
 
 WrongAnimal::~WrongAnimal() {
@@ -26,7 +25,7 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &animal) {
 	return *this;
 }
 
-std::string WrongAnimal::getType() const {
+const std::string & WrongAnimal::getType() const {
 	return this->type_;
 }
 

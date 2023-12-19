@@ -7,7 +7,6 @@ Dog::Dog() : Animal("Dog") {
 
 Dog::Dog(const Dog &other) : Animal(other) {
 	std::cerr << "Dog copy constructor called" << std::endl;
-	*this = other;
 }
 
 Dog::~Dog() {

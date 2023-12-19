@@ -9,9 +9,8 @@ Animal::Animal(const std::string &type) : type_(type) {
 	std::cerr << "Animal constructor called" << std::endl;
 }
 
-Animal::Animal(const Animal &animal) {
+Animal::Animal(const Animal &animal) : type_(animal.type_) {
 	std::cerr << "Animal copy constructor called" << std::endl;
-	*this = animal;
 }
 
 Animal::~Animal() {
@@ -26,7 +25,7 @@ Animal &Animal::operator=(const Animal &animal) {
 	return *this;
 }
 
-std::string Animal::getType() const {
+const std::string &Animal::getType() const {
 	return this->type_;
 }
 
