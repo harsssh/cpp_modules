@@ -1,28 +1,25 @@
 #include "Dog.h"
 #include <iostream>
 
-Dog::Dog() : Animal("Dog") {
+Dog::Dog() : Animal("Dog"), brain_(new Brain()) {
 	std::cerr << "Dog default constructor called" << std::endl;
-	this->brain_ = new Brain();
 }
 
-Dog::Dog(const Dog &other) : Animal(other) {
+Dog::Dog(const Dog &other) : Animal(other), brain_(new Brain(*other.brain_)) {
 	std::cerr << "Dog copy constructor called" << std::endl;
-	*this = other;
 }
 
 Dog::~Dog() {
 	std::cerr << "Dog destructor called" << std::endl;
-	delete this->brain_;
+	delete brain_;
 }
 
 Dog &Dog::operator=(const Dog &other) {
 	std::cerr << "Dog assignation operator called" << std::endl;
 	if (this != &other) {
 		Animal::operator=(other);
-		// brain_ is not NULL
-		// use Brain's assignation operator to copy the ideas
-		*brain_ = *other.brain_;
+		delete brain_;
+		brain_ = new Brain(*other.brain_);
 	}
 	return *this;
 }

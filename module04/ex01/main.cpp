@@ -37,11 +37,26 @@ void runDeepCopyTest() {
 	std::cout << "a2 idea[1]: " << a2.getIdea(1) << std::endl;
 }
 
+void copyTest() {
+	Dog dog;
+	dog.setIdea(0, "dog");
+	{
+		Dog tmp = dog;
+		tmp.setIdea(0, "tmp");
+		std::cout << "tmp idea[0]: " << tmp.getIdea(0) << std::endl;
+	}
+	// dog's brain must not be deleted
+	// dog's brain must not be overwritten
+	std::cout << "dog idea[0]: " << dog.getIdea(0) << std::endl;
+}
+
 int main() {
-	std::cout << "[Animal array test]" << std::endl;
+	std::cout << "[Copy test]" << std::endl;
+	copyTest();
+
+	std::cout << std::endl << "[Animal array test]" << std::endl;
 	runAnimalArrayTest();
 
-	std::cout << std::endl;
-	std::cout << "[Deep copy test]" << std::endl;
+	std::cout << std::endl << "[Deep copy test]" << std::endl;
 	runDeepCopyTest();
 }
