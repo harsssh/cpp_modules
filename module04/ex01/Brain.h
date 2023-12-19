@@ -6,7 +6,7 @@
 class Brain {
 private:
 	static const size_t maxIdeas = 100;
-	std::string ideas[Brain::maxIdeas];
+	std::string ideas_[Brain::maxIdeas];
 
 public:
 	Brain();
