@@ -21,8 +21,7 @@ const std::string &ShrubberyCreationForm::getTarget() const {
 	return target_;
 }
 
-void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
-throw(FormNotSignedException, GradeTooLowException, std::runtime_error) {
+void ShrubberyCreationForm::execute(const Bureaucrat &executor) const {
 	if (!isSigned())
 		throw FormNotSignedException();
 	if (!isEnoughGradeToExecute(executor.getGrade()))

@@ -20,8 +20,7 @@ public:
 
 	Form();
 
-	Form(const std::string &name, int gradeToSign,
-		 int gradeToExecute) throw(GradeTooHighException, GradeTooLowException);
+	Form(const std::string &name, int gradeToSign, int gradeToExecute);
 
 
 	Form(const Form &other);
@@ -38,7 +37,7 @@ public:
 
 	bool isSigned() const;
 
-	void beSigned(const Bureaucrat &bureaucrat) throw(GradeTooLowException);
+	void beSigned(const Bureaucrat &bureaucrat);
 
 private:
 	const std::string name_;

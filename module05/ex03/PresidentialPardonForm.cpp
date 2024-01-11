@@ -22,8 +22,7 @@ const std::string &PresidentialPardonForm::getTarget() const {
 	return target_;
 }
 
-void PresidentialPardonForm::execute(const Bureaucrat &executor) const
-throw(FormNotSignedException, GradeTooLowException) {
+void PresidentialPardonForm::execute(const Bureaucrat &executor) const {
 	if (!isSigned())
 		throw FormNotSignedException();
 	if (!isEnoughGradeToExecute(executor.getGrade()))

@@ -24,7 +24,7 @@ public:
 
 	Bureaucrat(const std::string &name);
 
-	Bureaucrat(const std::string &name, int grade) throw(GradeTooHighException, GradeTooLowException);
+	Bureaucrat(const std::string &name, int grade);
 
 	virtual ~Bureaucrat();
 
@@ -32,15 +32,15 @@ public:
 
 	Bureaucrat &operator=(const Bureaucrat &other);
 
-	void setGrade(int grade) throw(GradeTooHighException, GradeTooLowException);
+	void setGrade(int grade);
 
 	const std::string &getName() const;
 
 	int getGrade() const;
 
-	void incrementGrade() throw(GradeTooHighException);
+	void incrementGrade();
 
-	void decrementGrade() throw(GradeTooLowException);
+	void decrementGrade();
 
 	void signForm(Form &form) const;
 

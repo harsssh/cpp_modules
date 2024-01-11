@@ -6,8 +6,7 @@ Bureaucrat::Bureaucrat() : name_("anonymous"), grade_(Bureaucrat::minGrade_) {}
 
 Bureaucrat::Bureaucrat(const std::string &name) : name_(name), grade_(Bureaucrat::minGrade_) {}
 
-Bureaucrat::Bureaucrat(const std::string &name, int grade) throw(GradeTooHighException, GradeTooLowException)
-		: name_(name) {
+Bureaucrat::Bureaucrat(const std::string &name, int grade) : name_(name) {
 	setGrade(grade);
 }
 
@@ -32,7 +31,7 @@ int Bureaucrat::getGrade() const {
 	return grade_;
 }
 
-void Bureaucrat::setGrade(int grade) throw(GradeTooHighException, GradeTooLowException) {
+void Bureaucrat::setGrade(int grade) {
 	if (Bureaucrat::isTooHighGrade(grade))
 		throw GradeTooHighException();
 	if (Bureaucrat::isTooLowGrade(grade))
@@ -49,14 +48,14 @@ bool Bureaucrat::isTooLowGrade(int grade) {
 }
 
 // grade_ is valid, so grade_ - 1 must not overflow
-void Bureaucrat::incrementGrade() throw(GradeTooHighException) {
+void Bureaucrat::incrementGrade() {
 	if (Bureaucrat::isTooHighGrade(this->getGrade() - 1))
 		throw GradeTooHighException();
 	--grade_;
 }
 
 // grade_ is valid, so grade_ + 1 must not overflow
-void Bureaucrat::decrementGrade() throw(GradeTooLowException) {
+void Bureaucrat::decrementGrade() {
 	if (Bureaucrat::isTooLowGrade(this->getGrade() + 1))
 		throw GradeTooLowException();
 	++grade_;

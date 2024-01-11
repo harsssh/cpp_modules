@@ -17,8 +17,7 @@ public:
 
 	const std::string &getTarget() const;
 
-	virtual void
-	execute(const Bureaucrat &executor) const throw(FormNotSignedException, GradeTooLowException, std::runtime_error);
+	virtual void execute(const Bureaucrat &executor) const;
 
 private:
 	static const int gradeToSign_ = 145;

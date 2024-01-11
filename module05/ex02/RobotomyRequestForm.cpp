@@ -22,8 +22,7 @@ const std::string &RobotomyRequestForm::getTarget() const {
 	return target_;
 }
 
-void RobotomyRequestForm::execute(const Bureaucrat &executor) const
-throw(FormNotSignedException, GradeTooLowException) {
+void RobotomyRequestForm::execute(const Bureaucrat &executor) const {
 	if (!isSigned())
 		throw FormNotSignedException();
 	if (!isEnoughGradeToExecute(executor.getGrade()))
