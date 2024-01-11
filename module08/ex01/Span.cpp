@@ -19,7 +19,7 @@ Span &Span::operator=(const Span &other) {
 	return *this;
 }
 
-void Span::addNumber(int num) throw(std::runtime_error) {
+void Span::addNumber(int num) {
 	if (vec_.size() >= capacity_)
 		throw std::runtime_error("Span is full");
 	if (!vec_.empty()) {
@@ -30,13 +30,13 @@ void Span::addNumber(int num) throw(std::runtime_error) {
 	vec_.push_back(num);
 }
 
-unsigned int Span::shortestSpan() const throw(std::runtime_error) {
+unsigned int Span::shortestSpan() const {
 	if (span_.empty())
 		throw std::runtime_error("No span to calculate");
 	return *span_.begin();
 }
 
-unsigned int Span::longestSpan() const throw(std::runtime_error) {
+unsigned int Span::longestSpan() const {
 	if (span_.empty())
 		throw std::runtime_error("No span to calculate");
 	return *span_.rbegin();

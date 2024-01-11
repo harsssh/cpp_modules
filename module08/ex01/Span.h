@@ -17,19 +17,19 @@ public:
 
 	Span &operator=(const Span &other);
 
-	void addNumber(int num) throw(std::runtime_error);
+	void addNumber(int num);
 
 	template<class T>
-	void addNumber(T begin, T end) throw(std::runtime_error) {
+	void addNumber(T begin, T end) {
 		if (vec_.size() + std::distance(begin, end) > capacity_)
 			throw std::runtime_error("Span is full");
 		for (T it = begin; it != end; ++it)
 			addNumber(*it);
 	}
 
-	unsigned int shortestSpan() const throw(std::runtime_error);
+	unsigned int shortestSpan() const;
 
-	unsigned int longestSpan() const throw(std::runtime_error);
+	unsigned int longestSpan() const;
 
 	std::vector<int>::size_type size() const;
 
