@@ -6,9 +6,9 @@ Form::Form() : name_("anonymous"), gradeToSign_(Bureaucrat::minGrade_),
 
 Form::Form(const std::string &name, int gradeToSign, int gradeToExecute)
 		: name_(name), gradeToSign_(gradeToSign), gradeToExecute_(gradeToExecute), isSigned_(false) {
-	if (isTooHighGrade(gradeToSign) || isTooHighGrade(gradeToSign))
+	if (isTooHighGrade(gradeToSign) || isTooHighGrade(gradeToExecute))
 		throw GradeTooHighException();
-	if (isTooLowGrade(gradeToExecute) || isTooLowGrade(gradeToExecute))
+	if (isTooLowGrade(gradeToSign) || isTooLowGrade(gradeToExecute))
 		throw GradeTooLowException();
 }
 

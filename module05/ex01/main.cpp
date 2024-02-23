@@ -80,14 +80,18 @@ int main() {
 	std::cout << "[testNormal]" << std::endl;
 	testNormal();
 
+	std::cout << std::endl;
+
 	std::cout << "[testCannotSign]" << std::endl;
 	testCannotSign();
 
 	std::cout << std::endl;
+
 	std::cout << "[testTooHighGrade]" << std::endl;
 	testTooHighGrade();
 
 	std::cout << std::endl;
+
 	std::cout << "[testTooLowGrade]" << std::endl;
 	testTooLowGrade();
 }
