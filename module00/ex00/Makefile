@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 NAME := megaphone
 SRC := megaphone.cpp
 OBJ := $(SRC:.cpp=.o)

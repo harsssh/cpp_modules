@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 NAME := btc
 SRC := $(wildcard *.cpp)
 OBJ := $(SRC:.cpp=.o)

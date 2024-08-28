@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 NAME := zombie
 SRC := $(wildcard *.cpp)
 OBJ := $(SRC:.cpp=.o)

@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 NAME := RPN
 SRC := $(wildcard *.cpp)
 OBJ := $(SRC:.cpp=.o)
