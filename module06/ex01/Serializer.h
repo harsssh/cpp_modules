@@ -2,7 +2,7 @@
 #define CPP_MODULES_SERIALIZER_H
 
 #include "Data.h"
-#include <cstdint>
+#include <stdint.h>
 
 class Serializer {
 public:
