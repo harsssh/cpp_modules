@@ -13,7 +13,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++ valgrind parallel
+          sudo apt-get install -qq g++ valgrind parallel
 
       - name: Find Makefiles and run make valgrind in parallel
         run: |
