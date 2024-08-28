@@ -2,6 +2,7 @@
 #include "Bureaucrat.h"
 #include <cstdlib>
 #include <iostream>
+#include <ctime>
 
 RobotomyRequestForm::RobotomyRequestForm()
 		: AForm("RobotomyRequestForm", gradeToSign_, gradeToExecute_), target_("default") {}
