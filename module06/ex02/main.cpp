@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 #include "Base.h"
 #include "A.h"
 #include "B.h"
