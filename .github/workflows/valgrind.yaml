@@ -17,4 +17,4 @@ jobs:
 
       - name: Find Makefiles and run make valgrind in parallel
         run: |
-          find . -name Makefile -type f | parallel -j0 --halt soon,fail=1 'make -C {= s:Makefile:: =} valgrind' 
+          find . -name Makefile -type f | parallel -j0 --halt soon,fail=1 'make -s -C {= s:Makefile:: =} valgrind' 
