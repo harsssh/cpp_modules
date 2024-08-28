@@ -1,7 +1,6 @@
 #include "ShrubberyCreationForm.h"
 #include "Bureaucrat.h"
 #include <fstream>
-#include <iostream>
 
 ShrubberyCreationForm::ShrubberyCreationForm()
 		: AForm("ShrubberyCreationForm", gradeToSign_, gradeToExecute_), target_("default") {}
@@ -32,10 +31,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const {
 	const std::string fileName = target_ + "_shrubbery";
 	std::ofstream file(fileName.c_str());
 	if (!file.is_open())
-	{
-		std::perror("foo");
 		throw std::runtime_error("cannot open file");
-	}
 	std::string shrubbery =
 			"     ^^^   \n"
 			"    ^^^^   \n"
