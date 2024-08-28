@@ -21,3 +21,7 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
+
+.PHONY: valgrind
+valgrind: all
+	valgrind -q --leak-check=full --error-exitcode=1 --log-fd=3 ./$(NAME) 3>&2 &> /dev/null
