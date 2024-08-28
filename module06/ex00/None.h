@@ -18,7 +18,7 @@ public:
 		return *this;
 	}
 
-	T unwrap() const throw(std::runtime_error) {
+	T unwrap() const {
 		throw std::runtime_error("called unwrap on a None value");
 	}
 
