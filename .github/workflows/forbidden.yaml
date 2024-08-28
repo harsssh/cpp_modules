@@ -15,5 +15,6 @@ jobs:
           -e "using namespace" \
           -e "printf(" \
           -e "alloc(" \
+          -e "malloc(" \
           -e "free(" \
           -- "*.cpp" "*.h" "*.hpp"
