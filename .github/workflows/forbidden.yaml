@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          ! git grep -q -w \
+          ! git grep -w \
           -e "nullptr" \
           -e "using namespace" \
           -e "printf" \
