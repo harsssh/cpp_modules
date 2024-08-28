@@ -1,10 +1,7 @@
 #include <iostream>
 #include <algorithm>
-#include <cstdlib>
 
 int main(int argc, char **argv) {
-	int *x = (int*)std::malloc(4);
-	*x = 42;
 	if (argc == 1) {
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 		return 0;
