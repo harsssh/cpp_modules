@@ -16,7 +16,7 @@ std::string replace_str(const std::string &str, const std::string &s1, const std
 }
 
 int createReplacedFile(const std::string &filename, const std::string &s1, const std::string &s2) {
-	std::ifstream ifs(filename);
+	std::ifstream ifs(filename.c_str());
 	if (!ifs.is_open()) {
 		std::cerr << "Failed to open file: " << filename << std::endl;
 		return 1;
