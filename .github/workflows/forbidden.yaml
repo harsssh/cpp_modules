@@ -1,0 +1,19 @@
+name: Forbidden
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  forbidden:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          git grep -q -w \
+          -e "nullptr" \
+          -e "using namespace" \
+          -e "printf(" \
+          -e "alloc(" \
+          -e "free(" \
+          -- "*.cpp" "*.h" "*.hpp"
