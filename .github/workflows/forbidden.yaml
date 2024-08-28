@@ -16,4 +16,5 @@ jobs:
           -e "printf(" \
           -e "alloc(" \
           -e "free(" \
-          -- "*.cpp" "*.h" "*.hpp"
+          -- "*.cpp" "*.h" "*.hpp" \
+          || false
