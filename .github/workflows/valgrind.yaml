@@ -1,0 +1,20 @@
+name: Valgrind
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  valgrind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ valgrind parallel
+
+      - name: Find Makefiles and run make valgrind in parallel
+        run: |
+          find . -name Makefile -type f | parallel -j0 --halt soon,fail=1 'make -C {= s:Makefile:: =} valgrind' 
