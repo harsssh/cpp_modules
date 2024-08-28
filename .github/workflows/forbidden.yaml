@@ -13,8 +13,8 @@ jobs:
           ! git grep -q -w \
           -e "nullptr" \
           -e "using namespace" \
-          -e "printf(" \
-          -e "alloc(" \
-          -e "malloc(" \
-          -e "free(" \
+          -e "printf" \
+          -e "alloc" \
+          -e "malloc" \
+          -e "free" \
           -- "*.cpp" "*.h" "*.hpp"
