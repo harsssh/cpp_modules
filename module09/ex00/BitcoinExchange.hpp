@@ -3,7 +3,7 @@
 
 #include <string>
 #include <map>
-#include <utility>
+#include <stdexcept>
 
 class BitcoinExchange {
 public:

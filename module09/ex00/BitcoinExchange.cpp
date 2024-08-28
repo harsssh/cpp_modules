@@ -2,7 +2,6 @@
 #include <sstream>
 #include <fstream>
 #include <iostream>
-#include <stdexcept>
 
 BitcoinExchange::BitcoinExchange() : inputFilePath_("input.txt"), dataFilePath_("data.csv"), isValidData_(true) {
 	initExchangeRates();
