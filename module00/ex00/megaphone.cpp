@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 int main(int argc, char **argv) {
 	if (argc == 1) {
