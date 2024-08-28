@@ -1,6 +1,6 @@
 #include "ShrubberyCreationForm.h"
 #include "Bureaucrat.h"
-#include "fstream"
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm()
 		: AForm("ShrubberyCreationForm", gradeToSign_, gradeToExecute_), target_("default") {}
@@ -27,7 +27,9 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const {
 	if (!isEnoughGradeToExecute(executor.getGrade()))
 		throw GradeTooLowException();
 
-	std::ofstream file(target_ + "_shrubbery");
+	// NOTE: コンストラクタに直接 std::string を渡すとコンパイルできない環境がある
+	const char* fileName = (target_ + "_shrubbery").c_str();
+	std::ofstream file(fileName);
 	if (!file.is_open())
 		throw std::runtime_error("cannot open file");
 	std::string shrubbery =
