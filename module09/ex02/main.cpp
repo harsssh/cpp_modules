@@ -2,6 +2,7 @@
 #include <sstream>
 #include <iomanip>
 #include <ctime>
+#include <cstdlib>
 #include "PmergeMe.hpp"
 
 #define CLOCKS_PER_USEC (CLOCKS_PER_SEC / 1000000)
@@ -34,11 +35,11 @@ void fillContainer(int argc, char **argv, Container &c) {
 			c.at(i - 1) = s2i(argv[i]);
 			if (c.at(i - 1) < 0) {
 				std::cout << "Error" << std::endl;
-				exit(1);
+				std::exit(1);
 			}
 		} catch (std::exception &e) {
 			std::cerr << "Error" << std::endl;
-			exit(1);
+			std::exit(1);
 		}
 	}
 }

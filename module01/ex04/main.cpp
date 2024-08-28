@@ -21,7 +21,8 @@ int createReplacedFile(const std::string &filename, const std::string &s1, const
 		std::cerr << "Failed to open file: " << filename << std::endl;
 		return 1;
 	}
-	std::ofstream ofs(filename + ".replace");
+	const std::string replacedFilename = filename + ".replace";
+	std::ofstream ofs(replacedFilename.c_str());
 	if (!ofs.is_open()) {
 		std::cerr << "Failed to open file: " << filename + ".replace" << std::endl;
 		return 1;

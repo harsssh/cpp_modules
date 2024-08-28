@@ -47,7 +47,7 @@ void BitcoinExchange::run() {
 		return;
 	}
 
-	std::ifstream file(inputFilePath_);
+	std::ifstream file(inputFilePath_.c_str());
 	if (!file.is_open()) {
 		std::cerr << "failed to open file: " << inputFilePath_ << std::endl;
 		return;
@@ -93,7 +93,7 @@ void BitcoinExchange::run() {
 }
 
 void BitcoinExchange::initExchangeRates() {
-	std::ifstream file(dataFilePath_);
+	std::ifstream file(dataFilePath_.c_str());
 	if (!file.is_open()) {
 		isValidData_ = false;
 		std::cerr << "failed to open file: " << inputFilePath_ << std::endl;

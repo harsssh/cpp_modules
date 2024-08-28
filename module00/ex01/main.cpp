@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <limits>
+#include <cstdlib>
 
 typedef enum {
 	CMD_UNKNOWN,
