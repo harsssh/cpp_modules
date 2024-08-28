@@ -53,6 +53,7 @@ int main(int argc, char **argv) {
 	printFloatResult(result.floatPtr);
 	printDoubleResult(result.doublePtr);
 
+	// TODO: dtor を定義するとキレイに書ける
 	delete result.charPtr;
 	delete result.intPtr;
 	delete result.floatPtr;

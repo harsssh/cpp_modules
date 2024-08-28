@@ -18,6 +18,7 @@ Option<char> *ScalarConverter::convertToChar(const std::string &str) {
 	if (!intPtr->isSome())
 		return new None<char>();
 	int value = intPtr->unwrap();
+	delete intPtr;
 	return new Some<char>(static_cast<char>(value));
 }
 
