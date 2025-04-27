@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 NAME := main
-SRC := $(wildcard *.cpp)
+SRC := AForm.cpp Bureaucrat.cpp main.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++
