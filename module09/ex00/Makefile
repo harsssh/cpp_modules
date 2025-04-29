@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 NAME := btc
-SRC := $(wildcard *.cpp)
+SRC := BitcoinExchange.cpp main.cpp
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++

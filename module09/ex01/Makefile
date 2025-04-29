@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 NAME := RPN
-SRC := $(wildcard *.cpp)
+SRC := RPN.cpp main.cpp
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++

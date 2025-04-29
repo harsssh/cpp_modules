@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 NAME := PmergeMe
-SRC := $(wildcard *.cpp)
+SRC := PmergeMe.cpp main.cpp
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++
