@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 NAME := main
-SRC := $(wildcard *.cpp)
+SRC := Data.cpp main.cpp Serializer.cpp
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++

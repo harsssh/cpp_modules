@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 NAME := main
-SRC := $(wildcard *.cpp)
+SRC := Base.cpp main.cpp
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++

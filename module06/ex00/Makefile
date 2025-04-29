@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 NAME := convert
-SRC := $(wildcard *.cpp)
+SRC := main.cpp ScalarConverter.cpp
 OBJ := $(SRC:.cpp=.o)
 
 CXX := c++
