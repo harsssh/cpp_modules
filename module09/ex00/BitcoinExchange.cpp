@@ -182,7 +182,7 @@ bool BitcoinExchange::isValidDateStr(const std::string &dateStr) {
 	if (day < 1 || day > 31)
 		return false;
 	if (month == 2) {
-		if (year % 4 == 0) {
+		if (isLeapYear(year)) {
 			if (day > 29)
 				return false;
 		} else {
@@ -237,4 +237,9 @@ std::string BitcoinExchange::trim(const std::string &str) {
 		return "";
 	std::string::size_type right = str.find_last_not_of("\t\n\v\f\r ");
 	return str.substr(left, right - left + 1);
+}
+
+bool BitcoinExchange::isLeapYear(const int year)
+{
+	return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 }
