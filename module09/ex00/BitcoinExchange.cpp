@@ -61,7 +61,7 @@ void BitcoinExchange::run() {
 		try {
 			std::pair<std::string, float> p = parseInputLine(line);
 			std::string date = p.first;
-			float value = p.second;
+			const float value = p.second;
 
 			if (value < 0) {
 				std::cerr << "Error: not a positive number" << std::endl;
@@ -96,7 +96,7 @@ void BitcoinExchange::initExchangeRates() {
 	std::ifstream file(dataFilePath_.c_str());
 	if (!file.is_open()) {
 		isValidData_ = false;
-		std::cerr << "failed to open file: " << inputFilePath_ << std::endl;
+		std::cerr << "failed to open file: " << dataFilePath_ << std::endl;
 		return;
 	}
 
@@ -120,8 +120,8 @@ void BitcoinExchange::initExchangeRates() {
 
 std::pair<std::string, float>
 BitcoinExchange::parseExchangeRateLine(const std::string &line) throw(std::runtime_error) {
-	std::pair<std::string, std::string> linePair = splitLinePair(line, ',');
-	std::string dateStr = linePair.first;
+	const std::pair<std::string, std::string> linePair = splitLinePair(line, ',');
+	const std::string dateStr = linePair.first;
 	std::string rateStr = linePair.second;
 
 	if (rateStr.find(',') != std::string::npos)
@@ -132,7 +132,7 @@ BitcoinExchange::parseExchangeRateLine(const std::string &line) throw(std::runti
 	float rate;
 	try {
 		rate = s2f(rateStr);
-	} catch (std::invalid_argument &e) {
+	} catch (std::invalid_argument &) {
 		throw std::runtime_error("invalid exchange rate: " + rateStr);
 	}
 
@@ -140,9 +140,9 @@ BitcoinExchange::parseExchangeRateLine(const std::string &line) throw(std::runti
 }
 
 std::pair<std::string, float> BitcoinExchange::parseInputLine(const std::string &line) throw(std::runtime_error) {
-	std::pair<std::string, std::string> linePair = splitLinePair(line, '|');
-	std::string dateStr = trim(linePair.first);
-	std::string amountStr = trim(linePair.second);
+	const std::pair<std::string, std::string> linePair = splitLinePair(line, '|');
+	const std::string dateStr = trim(linePair.first);
+	const std::string amountStr = trim(linePair.second);
 
 	if (!isValidDateStr(dateStr))
 		throw std::runtime_error("invalid date string: " + dateStr);
@@ -150,7 +150,7 @@ std::pair<std::string, float> BitcoinExchange::parseInputLine(const std::string 
 	float amount;
 	try {
 		amount = s2f(amountStr);
-	} catch (std::invalid_argument &e) {
+	} catch (std::invalid_argument &) {
 		throw std::runtime_error("invalid amount: " + amountStr);
 	}
 
@@ -164,16 +164,16 @@ bool BitcoinExchange::isValidDateStr(const std::string &dateStr) {
 	if (dateStr[4] != '-' || dateStr[7] != '-')
 		return false;
 
-	std::string yearStr = dateStr.substr(0, 4);
-	std::string monthStr = dateStr.substr(5, 2);
-	std::string dayStr = dateStr.substr(8);
+	const std::string yearStr = dateStr.substr(0, 4);
+	const std::string monthStr = dateStr.substr(5, 2);
+	const std::string dayStr = dateStr.substr(8);
 
 	int year, month, day;
 	try {
 		year = s2i(yearStr);
 		month = s2i(monthStr);
 		day = s2i(dayStr);
-	} catch (std::exception &e) {
+	} catch (std::exception &) {
 		return false;
 	}
 
