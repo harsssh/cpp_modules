@@ -5,6 +5,8 @@
 #include <deque>
 #include <algorithm>
 
+extern size_t gCount;
+
 class PmergeMe {
 public:
 	PmergeMe();
@@ -72,12 +74,12 @@ private:
 		// increment
 		// moves the iterator to the next group
 		GroupIterator &operator++() {
-			std::advance(it_, groupSize_);
+			std::advance<Iterator>(it_, groupSize_);
 			return *this;
 		}
 
 		GroupIterator &operator+=(difference_type n) {
-			std::advance(it_, n * groupSize_);
+			std::advance<Iterator>(it_, n * groupSize_);
 			return *this;
 		}
 
@@ -85,7 +87,7 @@ private:
 		// moves the iterator forward by n groups
 		GroupIterator operator+(difference_type n) const {
 			GroupIterator tmp(*this);
-			std::advance(tmp.it_, n * groupSize_);
+			std::advance<Iterator>(tmp.it_, n * groupSize_);
 			return tmp;
 		}
 
@@ -93,7 +95,7 @@ private:
 		// moves the iterator backward by n groups
 		GroupIterator operator-(difference_type n) const {
 			GroupIterator tmp(*this);
-			std::advance(tmp.it_, -n * groupSize_);
+			std::advance<Iterator>(tmp.it_, -n * groupSize_);
 			return tmp;
 		}
 
@@ -116,6 +118,7 @@ private:
 		}
 
 		static bool compare(const GroupIterator &lhs, const GroupIterator &rhs) {
+			gCount++;
 			return *lhs < *rhs;
 		}
 
@@ -145,7 +148,7 @@ private:
 		// sort in pairs of groups
 		GroupIterator<Iterator> pairEnd = hasUnpairedGroup ? end - 1 : end;
 		for (GroupIterator<Iterator> it = begin; it != pairEnd; it += 2) {
-			if (*it > *(it + 1))
+			if (GroupIterator<Iterator>::compare(it + 1, it)) // *(it + 1) < *it
 				it.iter_swap(it + 1);
 		}
 
@@ -173,7 +176,7 @@ private:
 				binaryInsertion(sortedGroups, toBeInserted[currentIndex], GroupIterator<Iterator>::compare);
 				inserted[currentIndex] = true;
 			}
-			std::size_t nextIndex = currentIndex + 2 * prevIndex;
+			const std::size_t nextIndex = currentIndex + 2 * prevIndex;
 			prevIndex = currentIndex;
 			currentIndex = nextIndex;
 		}

@@ -64,14 +64,15 @@ int main(int argc, char **argv) {
 	double vectorElapsed = (double) (end - start) / CLOCKS_PER_USEC;
 
 	// sort deque
-	start = clock();
-	PmergeMe::sort(d);
-	end = clock();
-	double dequeElapsed = (double) (end - start) / CLOCKS_PER_USEC;
+//	start = clock();
+//	PmergeMe::sort(d);
+//	end = clock();
+//	double dequeElapsed = (double) (end - start) / CLOCKS_PER_USEC;
 
 	std::cout << "After:\t" << v << std::endl;
 	std::cout << "Time to process a range of " << std::setw(4) << v.size() << " elements with std::vector :\t"
 			  << std::setw(8) << vectorElapsed << " us" << std::endl;
-	std::cout << "Time to process a range of " << std::setw(4) << d.size() << " elements with std::deque :\t"
-			  << std::setw(8) << dequeElapsed << " us" << std::endl;
+    std::cout << gCount << std::endl;
+//	std::cout << "Time to process a range of " << std::setw(4) << d.size() << " elements with std::deque :\t"
+//			  << std::setw(8) << dequeElapsed << " us" << std::endl;
 }
