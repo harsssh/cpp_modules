@@ -4,7 +4,6 @@
 #include <vector>
 #include <deque>
 #include <algorithm>
-#include <iostream>
 
 class PmergeMe {
 public:
@@ -170,9 +169,9 @@ private:
         std::size_t currentSeq = 3;
         while (true) {
             const std::size_t startIndex = std::min(currentSeq, toBeInserted.size() - 1);
+            binarySearchEndIndex = std::min(binarySearchEndIndex + 2 * prevSeq, sortedGroups.size());
             for (std::size_t i = startIndex; i > prevSeq; --i) {
                 binaryInsertion(sortedGroups, binarySearchEndIndex, toBeInserted[i], GroupIterator<Iterator>::compare);
-                binarySearchEndIndex = std::min(binarySearchEndIndex + 2, sortedGroups.size());
             }
             if (startIndex == toBeInserted.size() - 1) break;
 
