@@ -6,8 +6,6 @@
 #include <algorithm>
 #include <iostream>
 
-extern size_t gCount;
-
 class PmergeMe {
 public:
 	PmergeMe();
@@ -119,8 +117,6 @@ private:
 		}
 
 		static bool compare(const GroupIterator &lhs, const GroupIterator &rhs) {
-			gCount++;
-            std::cout << *lhs << " < " << *rhs << " ?" << std::endl;
 			return *lhs < *rhs;
 		}
 
@@ -134,61 +130,89 @@ private:
 	};
 
 	template<typename T, typename Compare>
-	static void binaryInsertion(std::vector<T> &v, const T &value, Compare comp) {
-		typename std::vector<T>::iterator it = std::lower_bound(v.begin(), v.end(), value, comp);
+	static void binaryInsertion(
+        std::vector<T> &v,
+        std::size_t endIndex,
+        const T &value,
+        Compare comp
+    ) {
+		typename std::vector<T>::iterator it = std::lower_bound(v.begin(), v.begin() + endIndex, value, comp);
 		v.insert(it, value);
 	}
+
+    /**
+     * J(0) = 0, J(1) = 1, J(n) = J(n-1) + 2 * J(n-2)
+     * {J(n)} = {0, 1, 1, 3, 5, 11, 21, ...}
+     *
+     * J(n) の index を起点に、逆順に挿入することを繰り返す
+     * 挿入順: [0 (=J(0))], [1 (=J(1))], [3 (=J(3)), 2], [5 (=J(4)), 4], [11 (=J(5)), 10, ..., 6 ], ...
+     */
+    template<typename Iterator>
+    static void insertion(std::vector<GroupIterator<Iterator> > &sortedGroups, std::vector<GroupIterator<Iterator> > &toBeInserted) {
+        std::size_t binarySearchEndIndex = 0;
+
+        sortedGroups.insert(sortedGroups.begin(), toBeInserted[0]);
+        // 挿入した要素, それとペアになっていた main chain の要素分だけ検索範囲を増やす
+        binarySearchEndIndex = std::min(binarySearchEndIndex + 2, sortedGroups.size());
+
+        if (toBeInserted.size() < 2) return;
+
+        // toBeInserted[1] の挿入位置を探す
+        if (*toBeInserted[1] < *sortedGroups[0])
+            sortedGroups.insert(sortedGroups.begin(), toBeInserted[1]);
+        else if (*toBeInserted[1] < *sortedGroups[1])
+            sortedGroups.insert(sortedGroups.begin() + 1, toBeInserted[1]);
+        else
+            sortedGroups.insert(sortedGroups.begin() + 2, toBeInserted[1]);
+        binarySearchEndIndex = std::min(binarySearchEndIndex + 2, sortedGroups.size());
+
+        std::size_t prevSeq = 1;
+        std::size_t currentSeq = 3;
+        while (true) {
+            const std::size_t startIndex = std::min(currentSeq, toBeInserted.size() - 1);
+            for (std::size_t i = startIndex; i > prevSeq; --i) {
+                binaryInsertion(sortedGroups, binarySearchEndIndex, toBeInserted[i], GroupIterator<Iterator>::compare);
+                binarySearchEndIndex = std::min(binarySearchEndIndex + 2, sortedGroups.size());
+            }
+            if (startIndex == toBeInserted.size() - 1) break;
+
+            const std::size_t nextSeq = currentSeq + 2 * prevSeq;
+            prevSeq = currentSeq;
+            currentSeq = nextSeq;
+        }
+    }
 
 	template<typename Iterator>
 	static void mergeInsertionSort(GroupIterator<Iterator> begin, GroupIterator<Iterator> end) {
 		typename GroupIterator<Iterator>::difference_type size = std::distance(begin, end);
-		if (size < 2)
-			return;
-
+		if (size < 2) return;
 		bool hasUnpairedGroup = (size % 2 == 1);
 
-		// sort in pairs of groups
+        // merge sort のようにペアごとに比較、交換をする
 		GroupIterator<Iterator> pairEnd = hasUnpairedGroup ? end - 1 : end;
 		for (GroupIterator<Iterator> it = begin; it != pairEnd; it += 2) {
+            // ペア (it, it+1) について、group の代表値が大きいほうが後になるように交換
 			if (GroupIterator<Iterator>::compare(it + 1, it)) // *(it + 1) < *it
 				it.iter_swap(it + 1);
 		}
 
-		// sort pairs of groups
+		// ペア単位で再帰的にソート
 		mergeInsertionSort(GroupIterator<Iterator>(begin, 2), GroupIterator<Iterator>(pairEnd, 2));
 
-		// merge pairs of groups
-		// TODO: optimize
+        // ペアの先頭を toBeInserted に、末尾を sortedGroups に振り分ける
 		std::vector<GroupIterator<Iterator> > sortedGroups;
 		std::vector<GroupIterator<Iterator> > toBeInserted;
 		for (GroupIterator<Iterator> it = begin; it != pairEnd; it += 2) {
 			toBeInserted.push_back(it);
 			sortedGroups.push_back(it + 1);
 		}
-		if (hasUnpairedGroup)
-			toBeInserted.push_back(pairEnd);
+		if (hasUnpairedGroup) toBeInserted.push_back(pairEnd);
 
-        /**
-         * J(0) = 0, J(1) = 1, J(n) = J(n-1) + 2 * J(n-2)
-         * {J(n)} = {0, 1, 1, 3, 5, 11, 21, ...}
-         *
-         * J(n) の index を起点に、逆順に挿入することを繰り返す
-         * 挿入順: [0 (=J(0))], [1 (=J(1))], [3 (=J(3)), 2], [5 (=J(4)), 4], [11 (=J(5)), 10, ..., 6 ], ...
-         */
-		binaryInsertion(sortedGroups, toBeInserted[0], GroupIterator<Iterator>::compare);
-        binaryInsertion(sortedGroups, toBeInserted[1], GroupIterator<Iterator>::compare);
-		std::size_t prevIndex = 1;
-		std::size_t currentIndex = 3;
-		while (currentIndex < toBeInserted.size() && prevIndex < currentIndex) {
-            for (std::size_t i = currentIndex; i > prevIndex; --i) {
-                binaryInsertion(sortedGroups, toBeInserted[i], GroupIterator<Iterator>::compare);
-            }
-			const std::size_t nextValue = currentIndex + 2 * prevIndex;
-			prevIndex = currentIndex;
-			currentIndex = std::min(nextValue, toBeInserted.size() - 1);
-		}
+        // insertion sort のようにソート列を構築
+        insertion(sortedGroups, toBeInserted);
 
-		// copy
+        // TODO: optimize
+        // sortedGroups の group を分解して、begin...end に書き戻す
 		std::vector<typename GroupIterator<Iterator>::value_type> tmp;
 		for (typename std::vector<GroupIterator<Iterator> >::iterator it = sortedGroups.begin();
 			 it != sortedGroups.end(); ++it) {

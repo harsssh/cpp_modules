@@ -1,7 +1,5 @@
 #include "PmergeMe.hpp"
 
-size_t gCount = 0;
-
 PmergeMe::PmergeMe() {}
 
 PmergeMe::PmergeMe(const PmergeMe &other) {
