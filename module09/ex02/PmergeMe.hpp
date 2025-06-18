@@ -4,6 +4,7 @@
 #include <vector>
 #include <deque>
 #include <algorithm>
+#include <iostream>
 
 extern size_t gCount;
 
@@ -119,6 +120,7 @@ private:
 
 		static bool compare(const GroupIterator &lhs, const GroupIterator &rhs) {
 			gCount++;
+            std::cout << *lhs << " < " << *rhs << " ?" << std::endl;
 			return *lhs < *rhs;
 		}
 
@@ -165,25 +167,27 @@ private:
 		}
 		if (hasUnpairedGroup)
 			toBeInserted.push_back(pairEnd);
-		std::vector<bool> inserted(toBeInserted.size(), false);
+
+        /**
+         * J(0) = 0, J(1) = 1, J(n) = J(n-1) + 2 * J(n-2)
+         * {J(n)} = {0, 1, 1, 3, 5, 11, 21, ...}
+         *
+         * J(n) の index を起点に、逆順に挿入することを繰り返す
+         * 挿入順: [0 (=J(0))], [1 (=J(1))], [3 (=J(3)), 2], [5 (=J(4)), 4], [11 (=J(5)), 10, ..., 6 ], ...
+         */
 		binaryInsertion(sortedGroups, toBeInserted[0], GroupIterator<Iterator>::compare);
-		inserted[0] = true;
-		std::size_t prevIndex = 0;
-		std::size_t currentIndex = 1;
-		// insert in Jacobsthal numbers order
-		while (currentIndex < toBeInserted.size()) {
-			if (!inserted[currentIndex]) {
-				binaryInsertion(sortedGroups, toBeInserted[currentIndex], GroupIterator<Iterator>::compare);
-				inserted[currentIndex] = true;
-			}
-			const std::size_t nextIndex = currentIndex + 2 * prevIndex;
+        binaryInsertion(sortedGroups, toBeInserted[1], GroupIterator<Iterator>::compare);
+		std::size_t prevIndex = 1;
+		std::size_t currentIndex = 3;
+		while (currentIndex < toBeInserted.size() && prevIndex < currentIndex) {
+            for (std::size_t i = currentIndex; i > prevIndex; --i) {
+                binaryInsertion(sortedGroups, toBeInserted[i], GroupIterator<Iterator>::compare);
+            }
+			const std::size_t nextValue = currentIndex + 2 * prevIndex;
 			prevIndex = currentIndex;
-			currentIndex = nextIndex;
+			currentIndex = std::min(nextValue, toBeInserted.size() - 1);
 		}
-		for (std::size_t i = 0; i < toBeInserted.size(); ++i) {
-			if (!inserted[i])
-				binaryInsertion(sortedGroups, toBeInserted[i], GroupIterator<Iterator>::compare);
-		}
+
 		// copy
 		std::vector<typename GroupIterator<Iterator>::value_type> tmp;
 		for (typename std::vector<GroupIterator<Iterator> >::iterator it = sortedGroups.begin();
